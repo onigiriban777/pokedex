@@ -1,0 +1,15 @@
+.tarjetitas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body{
+    background: url('./img/fondo.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: center;
+}
+.titulo {
+    color:white;
+    font-weight: 700!important;
+}

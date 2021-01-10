@@ -1,0 +1,46 @@
+.poke-tarjeta {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+}
+.poke-tarjeta:hover {
+    background-color: #D93636;
+    color:white;
+    cursor: pointer;
+}
+.poke-links{
+        text-decoration: none!important;
+}
+.poke-tarjeta p:hover {
+    text-decoration: none;
+}
+
+.poke-tarjeta p {
+    margin: 0;
+    margin-left: 6px;
+    padding: 8px;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+.poke-tarjeta img {
+    height: 60%;
+    width: auto;
+    object-fit: contain;
+    align-self: flex-end;
+}
+
+.poke-tipos {
+    display: flex;
+}
+.poke-tipos p {
+    font-size: 12px;
+    margin-top: 0;
+}
+/*Tarjeta Dialog box*/
+.full-card {
+    width: 60vw;
+    height: 40vh;
+    background-color: red;
+    margin: auto;
+}
