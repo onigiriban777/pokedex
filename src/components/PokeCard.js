@@ -11,11 +11,12 @@ import './PokeCard.css';
 
 export default function PokeTarjeta({nombre}) {
 const [fotito, setFotito] = useState('');
-const [types, setTypes] = useState({});
+const [types, setTypes] = useState([]);
 const [pokeId,setPokeId] = useState([]);
 const [pokePeso,setPokePeso] = useState([]);
 const [pokeAltura,setPokeAltura] = useState([]);
 const [open, setOpen] = React.useState(false);
+const [pokeHabilidad, setPokeHabilidad] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,12 +48,14 @@ useEffect(() => {
             //con esto, consigo la altura del pokemon
             const alturaPokemon = data.height;
             setPokeAltura(alturaPokemon);
+            //con esto, consigo la hablidad
+            const habilidadPokemon = data.abilities.map(a => a.ability.name);
+            //console.log(habilidadPokemon);
+            setPokeHabilidad(habilidadPokemon);
            }
         )
         .catch(error => console.log('error'))
-}, [{nombre}])
-
-
+}, [nombre])
 
     return (
         <React.Fragment>
@@ -60,42 +63,55 @@ useEffect(() => {
             <Paper className='poke-tarjeta' key={nombre} elevation={5} >
                 <p>{nombre}</p>
                 <div className='poke-tipos'>
-                    <p>{types[0]}</p>
-                    <p>{types[1]}</p>
+                    {types.map(tipo => (
+                            <p>{tipo}</p>
+                    ))}
                 </div>
-                <img src={fotito} />
+                <img src={fotito} alt='pokemon-avatar' />
             </Paper>
             </Link>
             <Dialog
             open={open}
             onClose={handleClose}
             >
-                <DialogTitle className='pruebita'>
-                    <Grid container >
-                        <Grid item xs={10} ><Typography variant='h4' >{nombre}</Typography></Grid>
-                        <Grid item xs={2} ><Typography variant='h4' >#{pokeId}</Typography></Grid>
+                <DialogTitle >
+                    <Grid container justify='center '>
+                    <Grid item xs={12} ><Typography variant='h4' className='id-poke' >#{pokeId}</Typography></Grid>
+                    <Grid item xs={12} ><Typography variant='h4' className='titulo-poke'>{nombre}</Typography></Grid>
                     </Grid>
                     <Divider />
                 </DialogTitle>
                 <DialogContent>
                 <Grid container>
-                    <Grid item xs={12} justify='center' align='center'><img src={fotito} /></Grid>
-                    <Grid item xs={12}><Typography variant='h6' >Type</Typography></Grid>
+                    <Grid item xs={12} justify='center' align='center'><img src={fotito} alt='pokemon-p' /></Grid>
+                    <Grid item xs={12}><Typography variant='h6' className='card-attr-title'>Type</Typography></Grid>
+                    {
+                            types.map(p => (
+                            <Grid item xs={3}>
+                                <Typography variant='body1' className='card-attr-text'  >{p}</Typography>
+                            </Grid>
+                            ))
+                        }
+
+                    <Grid item xs={12}><Typography variant='h6' className='card-attr-title' >Weight</Typography></Grid>
                     <Grid item xs={12}>
-                        <Typography variant='body1'>{types[0]} {types[1]}</Typography>
-                        <Divider />
+                        <Typography variant='body1' className='card-attr-text'   >{pokePeso} kg</Typography>
                     </Grid>
-                    <Grid item xs={12}><Typography variant='h6' >Weight</Typography></Grid>
+                    <Grid item xs={12}><Typography variant='h6' className='card-attr-title' >Height</Typography></Grid>
                     <Grid item xs={12}>
-                        <Typography variant='body1'>{pokePeso} kg</Typography>
-                        <Divider />
+                        <Typography variant='body1' className='card-attr-text'  >{pokeAltura}0 cm</Typography>
                     </Grid>
-                    <Grid item xs={12}><Typography variant='h6' >Height</Typography></Grid>
-                    <Grid item xs={12}>
-                        <Typography variant='body1'>{pokeAltura}0 cm</Typography>
-                        <Divider />
-                    </Grid>
-                    <Divider />
+                    <Grid item xs={12}><Typography variant='h6' className='card-attr-title' >Abilities</Typography></Grid>
+                    
+                        {
+                            pokeHabilidad.map(p => (
+                            <Grid item xs={3}>
+                                <Typography variant='body1' className='card-attr-text'  >{p}</Typography>
+                            </Grid>
+                            ))
+                        }
+                        
+                    
                 </Grid>
                 </DialogContent>
             </Dialog>

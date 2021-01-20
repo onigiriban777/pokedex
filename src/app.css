@@ -1,6 +1,8 @@
 .tarjetitas {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 140px;
 }
 
 body{
@@ -8,6 +10,7 @@ body{
     background-attachment: fixed;
     background-size: cover;
     background-position-y: center;
+    font-family: 'Open Sans', sans-serif;
 }
 .titulo {
     color:white;

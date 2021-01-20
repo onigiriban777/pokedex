@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import PokeTarjeta from './components/PokeCard';
 import Pagination from './components/Pagination';
 import './app.css';
+import NavBar from './components/NavBar';
 
 function App() {
 const [pokemon, setPokemon] = useState([]);
@@ -43,10 +44,8 @@ useEffect(() => {
       {loading ? <LinearProgress className='progreso' color="primary" /> :
       
       <React.Fragment>
+        <NavBar />
         <Grid container className='tarjetitas' spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant='h1' className='titulo' >Pokedex</Typography>
-          </Grid>
         {
           pokemon.map( p => 
             <Grid item xs={6} sm={3} md={3} lg={2}>
